@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="bn">
+  <!--
+        Project: Savings Goal Calculator v0.1
+        Authar: Mamun Hossen
+        Github: https://github.com/mamunhossen-dev
+    -->
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +30,6 @@
 body{font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:all 0.3s ease;overflow-x:hidden}
 .app-wrapper{max-width:820px;margin:0 auto;padding:1rem}
 
-/* Header */
 .header{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.5rem;background:var(--card);border-radius:20px;margin-bottom:1.2rem;border:1px solid var(--border);box-shadow:0 4px 20px var(--shadow)}
 .logo{display:flex;align-items:center;gap:10px}
 .logo-icon{width:42px;height:42px;background:linear-gradient(135deg,#0d9f6e,#06b6d4);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px}
@@ -35,20 +39,62 @@ body{font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:var(-
 .btn-icon{width:38px;height:38px;border-radius:10px;border:1px solid var(--border);background:var(--card2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all 0.2s;color:var(--text2)}
 .btn-icon:hover{background:var(--primary-light);border-color:var(--primary);color:var(--primary)}
 
-/* Motivational ticker */
+/* ======= JOMAKHOROS PROMO BANNER ======= */
+.jk-promo{
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#064e3b 0%,#0d9f6e 50%,#0891b2 100%);
+  border-radius:20px;padding:0;margin-bottom:1.2rem;
+  border:1px solid rgba(255,255,255,0.1);
+  box-shadow:0 8px 30px rgba(13,159,110,0.25);
+  cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;
+}
+.jk-promo:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(13,159,110,0.35)}
+.jk-promo-inner{display:flex;align-items:center;gap:0;padding:0;min-height:110px}
+.jk-promo-left{padding:1.3rem 1.4rem;flex:1}
+.jk-promo-badge{display:inline-block;background:rgba(255,255,255,0.18);color:white;font-size:0.65rem;font-weight:700;letter-spacing:1.5px;padding:3px 10px;border-radius:20px;margin-bottom:8px;text-transform:uppercase;border:1px solid rgba(255,255,255,0.25)}
+.jk-promo-title{font-size:1.15rem;font-weight:700;color:white;margin-bottom:5px;line-height:1.3}
+.jk-promo-title span{color:#6ee7b7}
+.jk-promo-sub{font-size:0.78rem;color:rgba(255,255,255,0.8);line-height:1.5;margin-bottom:12px}
+.jk-features{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.jk-feature{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:4px 10px;font-size:0.68rem;color:rgba(255,255,255,0.9);display:flex;align-items:center;gap:4px}
+.jk-cta-btn{display:inline-flex;align-items:center;gap:6px;background:white;color:#0d9f6e;padding:8px 18px;border-radius:10px;font-size:0.82rem;font-weight:700;text-decoration:none;transition:all 0.2s;font-family:inherit;border:none;cursor:pointer}
+.jk-cta-btn:hover{background:#f0fdf4;transform:scale(1.03)}
+.jk-cta-arrow{font-size:1rem;transition:transform 0.2s}
+.jk-cta-btn:hover .jk-cta-arrow{transform:translateX(3px)}
+.jk-promo-right{width:110px;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:1rem;position:relative}
+.jk-app-mockup{width:80px;background:white;border-radius:14px;padding:8px 6px;box-shadow:0 8px 24px rgba(0,0,0,0.25);position:relative;z-index:2}
+.jk-mock-header{background:linear-gradient(135deg,#0d9f6e,#06b6d4);border-radius:8px;height:28px;display:flex;align-items:center;justify-content:center;margin-bottom:6px}
+.jk-mock-header span{color:white;font-size:0.55rem;font-weight:700}
+.jk-mock-row{height:7px;background:#f0f7f4;border-radius:4px;margin-bottom:4px}
+.jk-mock-row:nth-child(2){width:90%;background:#e6f7f1}
+.jk-mock-row:nth-child(3){width:70%;background:#f0f7f4}
+.jk-mock-row:nth-child(4){width:85%;background:#e6f7f1}
+.jk-mock-bottom{display:flex;gap:3px;margin-top:6px}
+.jk-mock-btn{flex:1;height:12px;border-radius:3px;background:linear-gradient(135deg,#0d9f6e,#06b6d4)}
+.jk-glow{position:absolute;width:80px;height:80px;background:rgba(110,231,183,0.25);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);filter:blur(20px);z-index:1}
+/* Decorative circles */
+.jk-deco{position:absolute;border-radius:50%;pointer-events:none}
+.jk-deco-1{width:120px;height:120px;top:-40px;right:90px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06)}
+.jk-deco-2{width:60px;height:60px;bottom:-20px;left:40%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06)}
+/* Dismiss */
+.jk-close{position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,0.15);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.7);font-size:12px;transition:all 0.2s;z-index:10;font-family:inherit}
+.jk-close:hover{background:rgba(255,255,255,0.25);color:white}
+
+@media(max-width:500px){
+.jk-promo-right{display:none}
+.jk-promo-title{font-size:1rem}
+}
+
 .motivational-bar{background:linear-gradient(135deg,#0d9f6e,#0891b2);border-radius:14px;padding:0.8rem 1.2rem;margin-bottom:1.2rem;overflow:hidden;position:relative}
 .motivational-bar::before{content:'';position:absolute;top:-20px;right:-20px;width:80px;height:80px;background:rgba(255,255,255,0.08);border-radius:50%}
-.motivational-text{color:white;font-size:0.88rem;font-weight:500;text-align:center;opacity:0.95}
+.motivational-text{color:white;font-size:0.88rem;font-weight:500;text-align:center;opacity:0.95;transition:opacity 0.3s}
 
-/* Main grid */
 .main-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 @media(max-width:640px){.main-grid{grid-template-columns:1fr}}
 
-/* Cards */
 .card{background:var(--card);border-radius:20px;padding:1.4rem;border:1px solid var(--border);box-shadow:0 4px 20px var(--shadow)}
 .card-title{font-size:0.8rem;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:1px;margin-bottom:1rem;display:flex;align-items:center;gap:6px}
 
-/* Inputs */
 .field{margin-bottom:1rem}
 .field label{display:block;font-size:0.85rem;font-weight:500;color:var(--text2);margin-bottom:6px}
 .field-hint{font-size:0.72rem;color:var(--text3);margin-top:4px}
@@ -59,7 +105,6 @@ body{font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:var(-
 .input-wrap input::placeholder{color:var(--text3);font-size:0.8rem}
 .input-no-prefix input{padding-left:12px}
 
-/* Toggle */
 .toggle-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
 .toggle{position:relative;width:44px;height:24px}
 .toggle input{opacity:0;width:0;height:0}
@@ -68,7 +113,6 @@ body{font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:var(-
 .toggle input:checked+.toggle-slider{background:var(--primary)}
 .toggle input:checked+.toggle-slider:before{transform:translateX(20px)}
 
-/* Presets */
 .presets{margin-bottom:1rem}
 .presets-label{font-size:0.78rem;color:var(--text3);margin-bottom:8px;font-weight:500}
 .preset-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
@@ -79,12 +123,10 @@ body{font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:var(-
 .preset-name{font-size:0.65rem;color:var(--text2);font-weight:500;display:block}
 .preset-amount{font-size:0.7rem;color:var(--primary);font-weight:600;display:block}
 
-/* Calculate button */
 .calc-btn{width:100%;padding:14px;background:linear-gradient(135deg,#0d9f6e,#059669);border:none;border-radius:14px;color:white;font-family:inherit;font-size:1rem;font-weight:600;cursor:pointer;transition:all 0.3s;margin-top:4px;box-shadow:0 4px 15px rgba(13,159,110,0.3)}
 .calc-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(13,159,110,0.4)}
 .calc-btn:active{transform:translateY(0)}
 
-/* Results */
 .results{grid-column:1/-1;animation:slideUp 0.5s ease}
 @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
@@ -95,19 +137,15 @@ body{font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:var(-
 .result-time{font-size:2.4rem;font-weight:700;margin-bottom:8px;text-shadow:0 2px 10px rgba(0,0,0,0.2)}
 .result-date{font-size:0.88rem;opacity:0.85;background:rgba(255,255,255,0.15);display:inline-block;padding:5px 14px;border-radius:20px;margin-top:4px}
 
-/* Stat cards */
 .stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:1rem}
-@media(max-width:480px){.stat-grid{grid-template-columns:1fr 1fr}}
 .stat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1rem;text-align:center}
 .stat-label{font-size:0.72rem;color:var(--text3);margin-bottom:4px;font-weight:500}
 .stat-value{font-size:1.1rem;font-weight:700;color:var(--primary)}
 .stat-sub{font-size:0.68rem;color:var(--text3);margin-top:2px}
 
-/* Chart wrapper */
 .chart-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.4rem;margin-bottom:1rem}
 .chart-title{font-size:0.8rem;color:var(--text2);margin-bottom:1rem;font-weight:500}
 
-/* Insights */
 .insights{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.4rem;margin-bottom:1rem}
 .insight-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
 .insight-item:last-child{border-bottom:none;padding-bottom:0}
@@ -118,27 +156,34 @@ body{font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:var(-
 .insight-text{font-size:0.83rem;color:var(--text);line-height:1.5}
 .insight-text strong{color:var(--primary);font-weight:600}
 
-/* Progress bar */
 .progress-section{margin-bottom:1rem}
 .progress-label{display:flex;justify-content:space-between;margin-bottom:6px;font-size:0.8rem;color:var(--text2)}
 .progress-track{height:10px;background:var(--border);border-radius:10px;overflow:hidden}
 .progress-fill{height:100%;background:linear-gradient(90deg,#0d9f6e,#06b6d4);border-radius:10px;transition:width 1s ease}
 
-/* Validation */
 .validation{background:#fef2f2;border:1px solid #fecaca;border-radius:12px;padding:0.8rem 1rem;margin-bottom:1rem;font-size:0.83rem;color:#dc2626;display:none}
 .validation.show{display:block}
 
-/* Error state */
-.field-error input{border-color:var(--red)!important}
+/* Result bottom promo */
+.result-jk-promo{
+  background:linear-gradient(135deg,#022c22,#064e3b);
+  border-radius:18px;padding:1.3rem 1.5rem;
+  border:1px solid rgba(110,231,183,0.2);
+  margin-top:0.5rem;display:flex;align-items:center;gap:1rem;
+  position:relative;overflow:hidden;
+}
+.result-jk-promo::after{content:'';position:absolute;right:-20px;top:-20px;width:100px;height:100px;background:rgba(110,231,183,0.07);border-radius:50%}
+.rjk-icon{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#0d9f6e,#0891b2);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.rjk-text{flex:1}
+.rjk-title{font-size:0.92rem;font-weight:700;color:white;margin-bottom:3px}
+.rjk-sub{font-size:0.75rem;color:rgba(255,255,255,0.65);line-height:1.4}
+.rjk-btn{background:linear-gradient(135deg,#0d9f6e,#059669);color:white;border:none;border-radius:10px;padding:9px 16px;font-family:inherit;font-size:0.78rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:all 0.2s;flex-shrink:0}
+.rjk-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(13,159,110,0.4)}
 
-/* Circular progress */
-.circle-container{display:flex;justify-content:center;margin-bottom:1rem}
-.circle-svg{width:140px;height:140px}
-
-@media(max-width:640px){
+@media(max-width:500px){
 .result-time{font-size:1.8rem}
-.stat-grid{grid-template-columns:1fr 1fr}
-.preset-grid{grid-template-columns:repeat(3,1fr)}
+.rjk-btn{width:100%;margin-top:10px}
+.result-jk-promo{flex-wrap:wrap}
 }
 </style>
 </head>
@@ -156,7 +201,44 @@ body{font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:var(-
   </div>
   <div class="header-actions">
     <button class="btn-icon" id="darkToggle" title="Dark Mode">🌙</button>
-    <button class="btn-icon" id="langToggle" title="Language">EN</button>
+  </div>
+</div>
+
+<!-- ===== JOMAKHOROS PROMO BANNER ===== -->
+<div class="jk-promo" id="jkPromo" onclick="openJK()">
+  <div class="jk-deco jk-deco-1"></div>
+  <div class="jk-deco jk-deco-2"></div>
+  <button class="jk-close" onclick="event.stopPropagation();document.getElementById('jkPromo').style.display='none'" title="বন্ধ করুন">✕</button>
+  <div class="jk-promo-inner">
+    <div class="jk-promo-left">
+      <div class="jk-promo-badge">🇧🇩 বাংলাদেশের #১ অ্যাপ</div>
+      <div class="jk-promo-title">হিসাব রাখুন <span>জমাখরচ</span>-এ</div>
+      <div class="jk-promo-sub">আয়-ব্যয়, বাজেট, ঋণ ও সঞ্চয় — সব এক জায়গায়। bKash, Nagad, Rocket সাপোর্ট সহ।</div>
+      <div class="jk-features">
+        <span class="jk-feature">📊 আয়-ব্যয় ট্র্যাক</span>
+        <span class="jk-feature">💳 bKash / Nagad</span>
+        <span class="jk-feature">🎯 মাসিক বাজেট</span>
+        <span class="jk-feature">📈 রিপোর্ট</span>
+        <span class="jk-feature">✅ সম্পূর্ণ ফ্রি</span>
+      </div>
+      <button class="jk-cta-btn" onclick="event.stopPropagation();openJK()">
+        ফ্রিতে শুরু করুন <span class="jk-cta-arrow">→</span>
+      </button>
+    </div>
+    <div class="jk-promo-right">
+      <div class="jk-glow"></div>
+      <div class="jk-app-mockup">
+        <div class="jk-mock-header"><span>জমাখরচ</span></div>
+        <div class="jk-mock-row"></div>
+        <div class="jk-mock-row"></div>
+        <div class="jk-mock-row"></div>
+        <div class="jk-mock-row"></div>
+        <div class="jk-mock-bottom">
+          <div class="jk-mock-btn"></div>
+          <div class="jk-mock-btn" style="background:rgba(6,182,212,0.5)"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -168,89 +250,42 @@ body{font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:var(-
 <!-- Main grid -->
 <div class="main-grid">
 
-  <!-- Left: Input card -->
   <div class="card">
     <div class="card-title">📋 আপনার তথ্য দিন</div>
 
-    <!-- Presets -->
     <div class="presets">
       <div class="presets-label">দ্রুত প্রিসেট বেছে নিন:</div>
       <div class="preset-grid">
-        <button class="preset-btn" onclick="applyPreset('emergency')">
-          <span class="preset-icon">🛡️</span>
-          <span class="preset-name">জরুরি ফান্ড</span>
-          <span class="preset-amount">৳১,০০,০০০</span>
-        </button>
-        <button class="preset-btn" onclick="applyPreset('car')">
-          <span class="preset-icon">🚗</span>
-          <span class="preset-name">গাড়ি কেনা</span>
-          <span class="preset-amount">৳৫,০০,০০০</span>
-        </button>
-        <button class="preset-btn" onclick="applyPreset('house')">
-          <span class="preset-icon">🏠</span>
-          <span class="preset-name">বাড়ি কেনা</span>
-          <span class="preset-amount">৳২০,০০,০০০</span>
-        </button>
-        <button class="preset-btn" onclick="applyPreset('marriage')">
-          <span class="preset-icon">💒</span>
-          <span class="preset-name">বিবাহ</span>
-          <span class="preset-amount">৳৩,০০,০০০</span>
-        </button>
-        <button class="preset-btn" onclick="applyPreset('edu')">
-          <span class="preset-icon">🎓</span>
-          <span class="preset-name">শিক্ষা</span>
-          <span class="preset-amount">৳৫০,০০০</span>
-        </button>
-        <button class="preset-btn" onclick="applyPreset('travel')">
-          <span class="preset-icon">✈️</span>
-          <span class="preset-name">ভ্রমণ</span>
-          <span class="preset-amount">৳৮০,০০০</span>
-        </button>
+        <button class="preset-btn" onclick="applyPreset('emergency',this)"><span class="preset-icon">🛡️</span><span class="preset-name">জরুরি ফান্ড</span><span class="preset-amount">৳১,০০,০০০</span></button>
+        <button class="preset-btn" onclick="applyPreset('car',this)"><span class="preset-icon">🚗</span><span class="preset-name">গাড়ি কেনা</span><span class="preset-amount">৳৫,০০,০০০</span></button>
+        <button class="preset-btn" onclick="applyPreset('house',this)"><span class="preset-icon">🏠</span><span class="preset-name">বাড়ি কেনা</span><span class="preset-amount">৳২০,০০,০০০</span></button>
+        <button class="preset-btn" onclick="applyPreset('marriage',this)"><span class="preset-icon">💒</span><span class="preset-name">বিবাহ</span><span class="preset-amount">৳৩,০০,০০০</span></button>
+        <button class="preset-btn" onclick="applyPreset('edu',this)"><span class="preset-icon">🎓</span><span class="preset-name">শিক্ষা</span><span class="preset-amount">৳৫০,০০০</span></button>
+        <button class="preset-btn" onclick="applyPreset('travel',this)"><span class="preset-icon">✈️</span><span class="preset-name">ভ্রমণ</span><span class="preset-amount">৳৮০,০০০</span></button>
       </div>
     </div>
 
     <div class="validation" id="validation"></div>
 
-    <!-- Current balance -->
-    <div class="field" id="field-balance">
+    <div class="field">
       <label>বর্তমান জমা (Current Balance)</label>
-      <div class="input-wrap">
-        <span class="input-prefix">৳</span>
-        <input type="number" id="currentBalance" placeholder="এখন আপনার কাছে কত টাকা আছে?" min="0" step="100">
-      </div>
+      <div class="input-wrap"><span class="input-prefix">৳</span><input type="number" id="currentBalance" placeholder="এখন আপনার কাছে কত টাকা আছে?" min="0" step="100"></div>
     </div>
-
-    <!-- Target -->
-    <div class="field" id="field-target">
+    <div class="field">
       <label>লক্ষ্য (Target Amount)</label>
-      <div class="input-wrap">
-        <span class="input-prefix">৳</span>
-        <input type="number" id="targetAmount" placeholder="আপনি মোট কত টাকা জমাতে চান?" min="0" step="100">
-      </div>
+      <div class="input-wrap"><span class="input-prefix">৳</span><input type="number" id="targetAmount" placeholder="আপনি মোট কত টাকা জমাতে চান?" min="0" step="100"></div>
     </div>
-
-    <!-- Monthly contribution -->
-    <div class="field" id="field-monthly">
+    <div class="field">
       <label>মাসিক জমা (Monthly Savings)</label>
-      <div class="input-wrap">
-        <span class="input-prefix">৳</span>
-        <input type="number" id="monthly" placeholder="প্রতি মাসে কত টাকা জমাবেন?" min="0" step="100">
-      </div>
+      <div class="input-wrap"><span class="input-prefix">৳</span><input type="number" id="monthly" placeholder="প্রতি মাসে কত টাকা জমাবেন?" min="0" step="100"></div>
     </div>
-
-    <!-- Interest rate toggle -->
     <div class="field">
       <div class="toggle-row">
         <label style="margin-bottom:0">মুনাফার হার (Profit Rate)</label>
-        <label class="toggle">
-          <input type="checkbox" id="rateToggle" onchange="toggleRate()">
-          <span class="toggle-slider"></span>
-        </label>
+        <label class="toggle"><input type="checkbox" id="rateToggle" onchange="toggleRate()"><span class="toggle-slider"></span></label>
       </div>
       <div id="rateField" style="display:none;margin-top:8px">
-        <div class="input-wrap input-no-prefix">
-          <input type="number" id="interestRate" placeholder="বার্ষিক মুনাফার হার (যেমন: ৭.৫)" min="0" max="100" step="0.1">
-        </div>
+        <div class="input-wrap input-no-prefix"><input type="number" id="interestRate" placeholder="বার্ষিক মুনাফার হার (যেমন: ৭.৫)" min="0" max="100" step="0.1"></div>
         <div class="field-hint">ব্যাংক, DPS বা ইনভেস্টমেন্ট থেকে সম্ভাব্য লাভ</div>
       </div>
     </div>
@@ -258,11 +293,9 @@ body{font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:var(-
     <button class="calc-btn" onclick="calculate()">🎯 হিসাব করুন</button>
   </div>
 
-  <!-- Right: Info/Tips -->
   <div class="card">
     <div class="card-title">💡 সঞ্চয়ের টিপস</div>
-
-    <div style="space-y:1rem">
+    <div>
       <div style="background:var(--primary-light);border-radius:12px;padding:1rem;margin-bottom:10px">
         <div style="font-size:0.85rem;font-weight:600;color:var(--primary);margin-bottom:4px">৫০/৩০/২০ নিয়ম</div>
         <div style="font-size:0.78rem;color:var(--text2);line-height:1.5">আয়ের ৫০% প্রয়োজনে, ৩০% চাহিদায় এবং ২০% সঞ্চয়ে রাখুন</div>
@@ -276,12 +309,10 @@ body{font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:var(-
         <div style="font-size:0.78rem;color:var(--text2);line-height:1.5">বেতন পাওয়ার সাথে সাথেই সঞ্চয় করুন — খরচের পরে নয়</div>
       </div>
       <div style="background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:1rem">
-        <div style="font-size:0.85rem;font-weight:600;color:var(--text);margin-bottom:4px">জরুরি ফান্ড</div>
-        <div style="font-size:0.78rem;color:var(--text2);line-height:1.5">কমপক্ষে ৩-৬ মাসের খরচের সমান জরুরি ফান্ড রাখুন</div>
+        <div style="font-size:0.85rem;font-weight:600;color:var(--text);margin-bottom:4px">হিসাব রাখুন</div>
+        <div style="font-size:0.78rem;color:var(--text2);line-height:1.5">প্রতিদিনের খরচের হিসাব রাখলে অপ্রয়োজনীয় খরচ কমানো সহজ হয়</div>
       </div>
     </div>
-
-    <!-- Quick add monthly -->
     <div style="margin-top:1rem">
       <div class="presets-label">দ্রুত মাসিক পরিমাণ:</div>
       <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px">
@@ -294,90 +325,59 @@ body{font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:var(-
     </div>
   </div>
 
-  <!-- Results (hidden by default) -->
+  <!-- Results -->
   <div class="results" id="results" style="display:none">
-
-    <!-- Hero result -->
     <div class="result-hero">
       <div class="result-label">আপনার লক্ষ্য পূরণ করতে সময় লাগবে</div>
       <div class="result-time" id="resultTime">—</div>
       <div class="result-date" id="resultDate">সম্ভাব্য তারিখ: —</div>
     </div>
 
-    <!-- Progress -->
     <div class="card" style="margin-bottom:1rem">
       <div class="card-title">📊 লক্ষ্য অর্জনের অগ্রগতি</div>
       <div class="progress-section">
-        <div class="progress-label">
-          <span>বর্তমান জমা</span>
-          <span id="progressPct">০%</span>
-        </div>
-        <div class="progress-track">
-          <div class="progress-fill" id="progressFill" style="width:0%"></div>
-        </div>
-        <div class="progress-label" style="margin-top:6px;margin-bottom:0">
-          <span id="progressLeft"></span>
-          <span id="progressTarget"></span>
-        </div>
+        <div class="progress-label"><span>বর্তমান জমা</span><span id="progressPct">০%</span></div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+        <div class="progress-label" style="margin-top:6px;margin-bottom:0"><span id="progressLeft"></span><span id="progressTarget"></span></div>
       </div>
     </div>
 
-    <!-- Stats -->
     <div class="stat-grid">
-      <div class="stat-card">
-        <div class="stat-label">মোট বিনিয়োগ</div>
-        <div class="stat-value" id="statInvested">—</div>
-        <div class="stat-sub">আপনার নিজের টাকা</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">মোট মুনাফা</div>
-        <div class="stat-value" id="statProfit">—</div>
-        <div class="stat-sub">সুদ থেকে আয়</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">চূড়ান্ত ব্যালেন্স</div>
-        <div class="stat-value" id="statFinal">—</div>
-        <div class="stat-sub">লক্ষ্য পূরণে</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">মাসিক প্রবৃদ্ধি</div>
-        <div class="stat-value" id="statGrowth">—</div>
-        <div class="stat-sub">গড় মাসিক বৃদ্ধি</div>
-      </div>
+      <div class="stat-card"><div class="stat-label">মোট বিনিয়োগ</div><div class="stat-value" id="statInvested">—</div><div class="stat-sub">আপনার নিজের টাকা</div></div>
+      <div class="stat-card"><div class="stat-label">মোট মুনাফা</div><div class="stat-value" id="statProfit">—</div><div class="stat-sub">সুদ থেকে আয়</div></div>
+      <div class="stat-card"><div class="stat-label">চূড়ান্ত ব্যালেন্স</div><div class="stat-value" id="statFinal">—</div><div class="stat-sub">লক্ষ্য পূরণে</div></div>
+      <div class="stat-card"><div class="stat-label">মাসিক প্রবৃদ্ধি</div><div class="stat-value" id="statGrowth">—</div><div class="stat-sub">গড় মাসিক বৃদ্ধি</div></div>
     </div>
 
-    <!-- Growth chart -->
     <div class="chart-card">
       <div class="chart-title">📈 মাসিক ব্যালেন্স প্রবৃদ্ধি</div>
-      <div style="position:relative;width:100%;height:220px">
-        <canvas id="growthChart" role="img" aria-label="Monthly balance growth chart">মাসিক ব্যালেন্স বৃদ্ধির চার্ট</canvas>
-      </div>
+      <div style="position:relative;width:100%;height:220px"><canvas id="growthChart" role="img" aria-label="Monthly balance growth chart">মাসিক ব্যালেন্স বৃদ্ধির চার্ট</canvas></div>
     </div>
 
-    <!-- Breakdown chart -->
     <div class="chart-card">
       <div class="chart-title">🥧 বিনিয়োগ বনাম মুনাফা</div>
       <div style="display:flex;gap:1rem;flex-wrap:wrap">
-        <div style="flex:1;min-width:180px;position:relative;height:180px">
-          <canvas id="pieChart" role="img" aria-label="Investment vs profit pie chart">বিনিয়োগ ও মুনাফার অনুপাত</canvas>
-        </div>
+        <div style="flex:1;min-width:180px;position:relative;height:180px"><canvas id="pieChart" role="img" aria-label="Investment vs profit pie chart">বিনিয়োগ ও মুনাফার অনুপাত</canvas></div>
         <div style="display:flex;flex-direction:column;justify-content:center;gap:10px">
-          <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem;color:var(--text2)">
-            <span style="width:12px;height:12px;border-radius:2px;background:#0d9f6e;display:inline-block"></span>
-            <span>আপনার জমা</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem;color:var(--text2)">
-            <span style="width:12px;height:12px;border-radius:2px;background:#06b6d4;display:inline-block"></span>
-            <span>মুনাফা</span>
-          </div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem;color:var(--text2)"><span style="width:12px;height:12px;border-radius:2px;background:#0d9f6e;display:inline-block"></span>আপনার জমা</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem;color:var(--text2)"><span style="width:12px;height:12px;border-radius:2px;background:#06b6d4;display:inline-block"></span>মুনাফা</div>
         </div>
       </div>
     </div>
 
-    <!-- Insights -->
     <div class="insights">
       <div class="card-title">🔍 স্মার্ট ইনসাইট</div>
       <div id="insightsContainer"></div>
+    </div>
+
+    <!-- Bottom JomaKhoros CTA after results -->
+    <div class="result-jk-promo">
+      <div class="rjk-icon">📒</div>
+      <div class="rjk-text">
+        <div class="rjk-title">এই সঞ্চয় ট্র্যাক করুন জমাখরচ-এ!</div>
+        <div class="rjk-sub">আয়-ব্যয়, বাজেট ও সঞ্চয় — সব এক জায়গায় বাংলায়। সম্পূর্ণ ফ্রি।</div>
+      </div>
+      <button class="rjk-btn" onclick="openJK()">এখনই ব্যবহার করুন →</button>
     </div>
 
   </div>
@@ -386,6 +386,10 @@ body{font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;background:var(-
 </div>
 
 <script>
+function openJK(){
+  window.open('https://jomakhoros.lovable.app/','_blank');
+}
+
 const motivMessages=[
 "✨ ছোট ছোট সঞ্চয় ভবিষ্যতের বড় নিরাপত্তা — আজই শুরু করুন!",
 "💚 নিয়মিত সেভিংস আপনার স্বপ্ন পূরণ করবে — ধৈর্য রাখুন!",
@@ -411,193 +415,95 @@ edu:{balance:10000,target:50000,monthly:5000,rate:0},
 travel:{balance:5000,target:80000,monthly:8000,rate:0}
 };
 
-function applyPreset(key){
+function applyPreset(key,btn){
 const p=presets[key];
 document.getElementById('currentBalance').value=p.balance;
 document.getElementById('targetAmount').value=p.target;
 document.getElementById('monthly').value=p.monthly;
-if(p.rate>0){
-document.getElementById('rateToggle').checked=true;
-document.getElementById('rateField').style.display='block';
-document.getElementById('interestRate').value=p.rate;
-}else{
-document.getElementById('rateToggle').checked=false;
-document.getElementById('rateField').style.display='none';
-}
+if(p.rate>0){document.getElementById('rateToggle').checked=true;document.getElementById('rateField').style.display='block';document.getElementById('interestRate').value=p.rate;}
+else{document.getElementById('rateToggle').checked=false;document.getElementById('rateField').style.display='none';}
 document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('active'));
-event.currentTarget.classList.add('active');
+btn.classList.add('active');
 }
 
 function setMonthly(v){document.getElementById('monthly').value=v;}
-function toggleRate(){
-const on=document.getElementById('rateToggle').checked;
-document.getElementById('rateField').style.display=on?'block':'none';
-}
+function toggleRate(){document.getElementById('rateField').style.display=document.getElementById('rateToggle').checked?'block':'none';}
 
 function formatTaka(n){
 const s=Math.round(n).toString();
 if(s.length<=3)return'৳'+s;
-let res=s.slice(-3);
-let rem=s.slice(0,-3);
+let res=s.slice(-3),rem=s.slice(0,-3);
 while(rem.length>2){res=rem.slice(-2)+','+res;rem=rem.slice(0,-2);}
 if(rem)res=rem+','+res;
 return'৳'+res;
 }
+function toBN(n){return String(n).replace(/[0-9]/g,d=>'০১২৩৪৫৬৭৮৯'[d]);}
+const bnM=['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
+function fmtDate(d){return toBN(d.getDate())+' '+bnM[d.getMonth()]+' '+toBN(d.getFullYear());}
+function timeStr(m){const y=Math.floor(m/12),mo=m%12;let s='';if(y>0)s+=toBN(y)+' বছর ';if(mo>0)s+=toBN(mo)+' মাস';return s.trim()||'এই মাসেই!';}
 
-function toBanglaNum(n){
-const m={'0':'০','1':'১','2':'২','3':'৩','4':'৪','5':'৫','6':'৬','7':'৭','8':'৮','9':'৯'};
-return String(n).replace(/[0-9]/g,d=>m[d]);
-}
-
-const bnMonths=['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
-
-function formatDate(d){
-return toBanglaNum(d.getDate())+' '+bnMonths[d.getMonth()]+' '+toBanglaNum(d.getFullYear());
-}
-
-function timeStr(months){
-const y=Math.floor(months/12);
-const m=months%12;
-let s='';
-if(y>0)s+=toBanglaNum(y)+' বছর ';
-if(m>0)s+=toBanglaNum(m)+' মাস';
-return s.trim()||'এই মাসেই!';
-}
-
-let growthChartInst=null,pieChartInst=null;
-
+let gc1=null,gc2=null;
 function calculate(){
 const balance=parseFloat(document.getElementById('currentBalance').value)||0;
 const target=parseFloat(document.getElementById('targetAmount').value)||0;
 const monthly=parseFloat(document.getElementById('monthly').value)||0;
 const rateOn=document.getElementById('rateToggle').checked;
 const annualRate=rateOn?(parseFloat(document.getElementById('interestRate').value)||0):0;
-const monthlyRate=annualRate/100/12;
-
+const mr=annualRate/100/12;
 const valEl=document.getElementById('validation');
-
 if(target<=0){valEl.textContent='অনুগ্রহ করে লক্ষ্য পরিমাণ দিন।';valEl.className='validation show';return;}
 if(balance<0||monthly<0){valEl.textContent='নেতিবাচক মান দেওয়া সম্ভব নয়।';valEl.className='validation show';return;}
-if(balance>=target){
-valEl.textContent='আপনি ইতিমধ্যেই লক্ষ্য পূরণ করেছেন! 🎉';valEl.className='validation show';
-setTimeout(()=>valEl.className='validation',3000);
-return;
-}
+if(balance>=target){valEl.textContent='আপনি ইতিমধ্যেই লক্ষ্য পূরণ করেছেন! 🎉';valEl.className='validation show';setTimeout(()=>valEl.className='validation',3000);return;}
 if(monthly===0&&annualRate===0){valEl.textContent='মাসিক জমা বা মুনাফার হার দিন।';valEl.className='validation show';return;}
-
 valEl.className='validation';
-
-let bal=balance;
-let totalMonths=0;
-const balHistory=[balance];
-const MAX_MONTHS=1200;
-
-if(monthlyRate>0){
-while(bal<target&&totalMonths<MAX_MONTHS){
-bal=bal*(1+monthlyRate)+monthly;
-totalMonths++;
-balHistory.push(Math.round(bal));
-}
-}else{
-while(bal<target&&totalMonths<MAX_MONTHS){
-bal+=monthly;
-totalMonths++;
-balHistory.push(Math.round(bal));
-}
-}
-
-if(totalMonths>=MAX_MONTHS){valEl.textContent='লক্ষ্য পূরণ করতে ১০০ বছরের বেশি সময় লাগবে। মাসিক জমা বাড়ান।';valEl.className='validation show';return;}
-
-const totalInvested=balance+monthly*totalMonths;
+let bal=balance,tm=0;
+const hist=[balance];
+const MAX=1200;
+if(mr>0){while(bal<target&&tm<MAX){bal=bal*(1+mr)+monthly;tm++;hist.push(Math.round(bal));}}
+else{while(bal<target&&tm<MAX){bal+=monthly;tm++;hist.push(Math.round(bal));}}
+if(tm>=MAX){valEl.textContent='লক্ষ্য পূরণ করতে ১০০ বছরের বেশি সময় লাগবে। মাসিক জমা বাড়ান।';valEl.className='validation show';return;}
+const totalInvested=balance+monthly*tm;
 const totalProfit=Math.max(0,Math.round(bal)-Math.round(totalInvested));
-const monthlyGrowth=totalMonths>0?Math.round((bal-balance)/totalMonths):0;
-
-const now=new Date();
-const endDate=new Date(now.getFullYear(),now.getMonth()+totalMonths,now.getDate());
+const monthlyGrowth=tm>0?Math.round((bal-balance)/tm):0;
 const pct=Math.min(100,Math.round((balance/target)*100));
-
-document.getElementById('resultTime').textContent=timeStr(totalMonths);
-document.getElementById('resultDate').textContent='সম্ভাব্য লক্ষ্য পূরণের তারিখ: '+formatDate(endDate);
-document.getElementById('progressPct').textContent=toBanglaNum(pct)+'%';
-document.getElementById('progressFill').style.width=pct+'%';
+const endDate=new Date();endDate.setMonth(endDate.getMonth()+tm);
+document.getElementById('resultTime').textContent=timeStr(tm);
+document.getElementById('resultDate').textContent='সম্ভাব্য লক্ষ্য পূরণের তারিখ: '+fmtDate(endDate);
+document.getElementById('progressPct').textContent=toBN(pct)+'%';
+setTimeout(()=>document.getElementById('progressFill').style.width=pct+'%',100);
 document.getElementById('progressLeft').textContent='বর্তমান: '+formatTaka(balance);
 document.getElementById('progressTarget').textContent='লক্ষ্য: '+formatTaka(target);
 document.getElementById('statInvested').textContent=formatTaka(totalInvested);
 document.getElementById('statProfit').textContent=formatTaka(totalProfit);
 document.getElementById('statFinal').textContent=formatTaka(Math.round(bal));
 document.getElementById('statGrowth').textContent=formatTaka(monthlyGrowth);
-
-// Chart data — sample max 24 points
-const step=Math.max(1,Math.floor(balHistory.length/24));
-const labels=[];const data=[];
-for(let i=0;i<balHistory.length;i+=step){
-labels.push(toBanglaNum(i)+' মাস');
-data.push(Math.round(balHistory[i]));
-}
-if(data[data.length-1]!==Math.round(balHistory[balHistory.length-1])){
-labels.push(toBanglaNum(totalMonths)+' মাস');
-data.push(Math.round(bal));
-}
-
-if(growthChartInst)growthChartInst.destroy();
-const gc=document.getElementById('growthChart').getContext('2d');
-growthChartInst=new Chart(gc,{
-type:'line',
-data:{labels,datasets:[{label:'ব্যালেন্স',data,borderColor:'#0d9f6e',backgroundColor:'rgba(13,159,110,0.1)',borderWidth:2,pointRadius:2,fill:true,tension:0.4}]},
-options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>formatTaka(ctx.parsed.y)}}},scales:{x:{ticks:{color:'#7fa899',font:{size:10},maxRotation:45},grid:{color:'rgba(0,0,0,0.05)'}},y:{ticks:{color:'#7fa899',font:{size:10},callback:v=>formatTaka(v)},grid:{color:'rgba(0,0,0,0.05)'}}}}
-});
-
-if(pieChartInst)pieChartInst.destroy();
-const pc=document.getElementById('pieChart').getContext('2d');
-pieChartInst=new Chart(pc,{
-type:'doughnut',
-data:{labels:['আপনার জমা','মুনাফা'],datasets:[{data:[Math.round(totalInvested),totalProfit],backgroundColor:['#0d9f6e','#06b6d4'],borderWidth:0}]},
-options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{display:false}}}
-});
-
-// Insights
+const step=Math.max(1,Math.floor(hist.length/24));
+const labels=[],data=[];
+for(let i=0;i<hist.length;i+=step){labels.push(toBN(i)+' মাস');data.push(Math.round(hist[i]));}
+if(data[data.length-1]!==Math.round(hist[hist.length-1])){labels.push(toBN(tm)+' মাস');data.push(Math.round(bal));}
+if(gc1)gc1.destroy();
+gc1=new Chart(document.getElementById('growthChart').getContext('2d'),{type:'line',data:{labels,datasets:[{label:'ব্যালেন্স',data,borderColor:'#0d9f6e',backgroundColor:'rgba(13,159,110,0.1)',borderWidth:2,pointRadius:2,fill:true,tension:0.4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>formatTaka(c.parsed.y)}}},scales:{x:{ticks:{color:'#7fa899',font:{size:10},maxRotation:45,autoSkip:true},grid:{color:'rgba(0,0,0,0.05)'}},y:{ticks:{color:'#7fa899',font:{size:10},callback:v=>formatTaka(v)},grid:{color:'rgba(0,0,0,0.05)'}}}}});
+if(gc2)gc2.destroy();
+gc2=new Chart(document.getElementById('pieChart').getContext('2d'),{type:'doughnut',data:{labels:['আপনার জমা','মুনাফা'],datasets:[{data:[Math.round(totalInvested),Math.max(0,totalProfit)],backgroundColor:['#0d9f6e','#06b6d4'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{display:false}}}});
 const ins=[];
-const faster2k=calcMonths(balance,target,monthly+2000,monthlyRate);
-if(faster2k<totalMonths){
-ins.push({icon:'💡',cls:'green',text:`আপনি মাসে আরও <strong>${formatTaka(2000)}</strong> সেভ করলে লক্ষ্য <strong>${timeStr(totalMonths-faster2k)}</strong> আগে পূরণ হবে`});
-}
-if(annualRate===0&&monthly>0){
-const wRate=calcMonths(balance,target,monthly,0.07/12);
-ins.push({icon:'🏦',cls:'blue',text:`৭% মুনাফার DPS/FDR করলে একই মাসিক জমায় <strong>${timeStr(totalMonths-wRate)}</strong> আগে লক্ষ্য পূরণ হতো`});
-}
-ins.push({icon:'📅',cls:'gold',text:`বর্তমান গতিতে আপনি <strong>${toBanglaNum(endDate.getFullYear())} সালে</strong> আপনার লক্ষ্য পূরণ করবেন`});
-if(totalMonths>12){
-ins.push({icon:'💰',cls:'green',text:`প্রতি বছর গড়ে <strong>${formatTaka(Math.round((bal-balance)/Math.ceil(totalMonths/12)))}</strong> জমা হবে আপনার অ্যাকাউন্টে`});
-}
-
-const ic=document.getElementById('insightsContainer');
-ic.innerHTML=ins.map(i=>`<div class="insight-item"><div class="insight-icon ${i.cls}">${i.icon}</div><div class="insight-text">${i.text}</div></div>`).join('');
-
+const f2k=calcM(balance,target,monthly+2000,mr);
+if(f2k<tm)ins.push({icon:'💡',cls:'green',text:`আপনি মাসে আরও <strong>${formatTaka(2000)}</strong> সেভ করলে লক্ষ্য <strong>${timeStr(tm-f2k)}</strong> আগে পূরণ হবে`});
+if(annualRate===0&&monthly>0){const wr=calcM(balance,target,monthly,0.07/12);if(wr<tm)ins.push({icon:'🏦',cls:'blue',text:`৭% মুনাফার DPS/FDR করলে একই জমায় <strong>${timeStr(tm-wr)}</strong> আগে লক্ষ্য পূরণ হতো`});}
+ins.push({icon:'📅',cls:'gold',text:`বর্তমান গতিতে আপনি <strong>${toBN(endDate.getFullYear())} সালে</strong> আপনার লক্ষ্য পূরণ করবেন`});
+document.getElementById('insightsContainer').innerHTML=ins.map(i=>`<div class="insight-item"><div class="insight-icon ${i.cls}">${i.icon}</div><div class="insight-text">${i.text}</div></div>`).join('');
 document.getElementById('results').style.display='block';
 setTimeout(()=>document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'}),100);
 }
 
-function calcMonths(balance,target,monthly,monthlyRate){
-let bal=balance,m=0;
-if(monthlyRate>0){while(bal<target&&m<1200){bal=bal*(1+monthlyRate)+monthly;m++;}}
-else{while(bal<target&&m<1200){bal+=monthly;m++;}}
+function calcM(balance,target,monthly,mr){
+let b=balance,m=0;
+if(mr>0){while(b<target&&m<1200){b=b*(1+mr)+monthly;m++;}}
+else{while(b<target&&m<1200){b+=monthly;m++;}}
 return m;
 }
 
-// Dark mode
 let dark=false;
-document.getElementById('darkToggle').addEventListener('click',()=>{
-dark=!dark;
-document.body.setAttribute('data-dark',dark);
-document.getElementById('darkToggle').textContent=dark?'☀️':'🌙';
-});
-
-// Language toggle (EN/BN hint)
-let eng=false;
-document.getElementById('langToggle').addEventListener('click',()=>{
-eng=!eng;
-document.getElementById('langToggle').textContent=eng?'বাং':'EN';
-});
+document.getElementById('darkToggle').addEventListener('click',()=>{dark=!dark;document.body.setAttribute('data-dark',dark);document.getElementById('darkToggle').textContent=dark?'☀️':'🌙';});
 </script>
 </body>
 </html>
